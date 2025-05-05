@@ -1,44 +1,43 @@
 (async () => {
-  // Ganti dengan Fine‑grained PAT-mu (scope: repo)
+  // Ganti dengan Fine‑grained PAT kamu (scope: repo)
   const authToken = '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';
 
   // Repo sudah di-set:
   const owner = 'xynatez';
   const repo = 'justatest';
-  const path = 'data.js';  // Path file yang akan disimpan
+  const path = 'data.js';
 
-  const octokit = new Octokit.Octokit({ auth: authToken });
+  // Inisialisasi Octokit
+  const octokit = new Octokit.Rest({ auth: authToken });
 
   document.getElementById('saveBtn').addEventListener('click', async () => {
-    // Ambil input pengguna
-    const content = document.getElementById('userInput').value;
+    const content = document.getElementById('userInput').value.trim();
 
-    // Format data yang akan disimpan
-    const fileContent = `// Saved user input\nwindow.savedInput = ${JSON.stringify({ userInput: content })};`;
+    if (!content) {
+      document.getElementById('status').textContent = '⚠️ Input kosong.';
+      return;
+    }
 
-    // Encode fileContent ke base64
+    const fileContent = `// Saved user input\nwindow.savedInput = ${JSON.stringify({ userInput: content }, null, 2)};`;
     const encoded = btoa(unescape(encodeURIComponent(fileContent)));
 
     let sha;
     try {
-      // Cek apakah file sudah ada
       const { data: existing } = await octokit.repos.getContent({ owner, repo, path });
-      sha = existing.sha; // Ambil SHA file yang ada
+      sha = existing.sha;
     } catch {
-      // File belum ada, tidak ada SHA
+      // file belum ada
     }
 
     try {
-      // Simpan atau update file ke GitHub
       await octokit.repos.createOrUpdateFileContents({
         owner,
         repo,
         path,
-        message: sha ? 'Update data.js' : 'Create data.js', // Pesan commit
+        message: sha ? 'Update data.js' : 'Create data.js',
         content: encoded,
-        sha // SHA untuk update file
+        sha
       });
-
       document.getElementById('status').textContent = '✅ Saved successfully!';
     } catch (error) {
       console.error(error);
