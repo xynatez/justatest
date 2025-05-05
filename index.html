@@ -3,41 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub API Test</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    textarea {
-      width: 100%;
-      height: 200px;
-      margin-bottom: 10px;
-      padding: 8px;
-    }
-    button {
-      padding: 8px 16px;
-      background-color: #2da44e;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    #status {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
+  <title>GitHub Repository Manager</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>GitHub API Test</h1>
-  <textarea id="userInput" placeholder="Enter your content here..."></textarea>
-  <button id="saveBtn">Save to GitHub</button>
-  <div id="status"></div>
+  <div class="container">
+    <header>
+      <h1>GitHub Repository Manager</h1>
+    </header>
 
-  <!-- Script will be loaded here -->
+    <div class="info-box">
+      <h2>How to use:</h2>
+      <ol>
+        <li>Enter your GitHub Personal Access Token with repo scope permissions</li>
+        <li>Enter the repository owner (username) and repository name</li>
+        <li>Enter the file path where you want to save the content</li>
+        <li>Enter your content in the text area</li>
+        <li>Click "Save to GitHub" to save your content</li>
+      </ol>
+    </div>
+
+    <div class="form-group">
+      <label for="authToken">GitHub Token:</label>
+      <input type="password" id="authToken" placeholder="Enter your GitHub Personal Access Token" class="form-control">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="owner">Repository Owner:</label>
+        <input type="text" id="owner" value="xynatez" placeholder="GitHub username" class="form-control">
+      </div>
+      
+      <div class="form-group">
+        <label for="repo">Repository Name:</label>
+        <input type="text" id="repo" value="justatest" placeholder="Repository name" class="form-control">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="path">File Path:</label>
+      <input type="text" id="path" value="data.js" placeholder="e.g., data.js or folder/file.txt" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="userInput">Content:</label>
+      <textarea id="userInput" placeholder="Enter your content here..." class="form-control"></textarea>
+    </div>
+
+    <div class="button-group">
+      <button id="saveBtn" class="btn primary">Save to GitHub</button>
+      <button id="loadBtn" class="btn secondary">Load From GitHub</button>
+    </div>
+
+    <div id="status" class="status"></div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
