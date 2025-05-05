@@ -1,55 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Repository Manager</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Penyimpanan Pesan di GitHub</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea {
+      min-height: 200px;
+      resize: vertical;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    #saveBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #loadBtn {
+      background-color: #2196F3;
+      color: white;
+    }
+    #saveBtn:hover {
+      background-color: #45a049;
+    }
+    #loadBtn:hover {
+      background-color: #0b7dda;
+    }
+    .status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .loading {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .help-text {
+      font-size: 0.8em;
+      color: #666;
+      margin-top: 3px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>GitHub Repository Manager</h1>
-    </header>
-    <div class="info-box">
-      <h2>How to use:</h2>
-      <ol>
-        <li>Enter your GitHub Personal Access Token with repo scope permissions</li>
-        <li>Enter the repository owner (username) and repository name</li>
-        <li>Enter the file path where you want to save the content</li>
-        <li>Enter your content in the text area</li>
-        <li>Click "Save to GitHub" to save your content</li>
-      </ol>
-    </div>
+    <h1>Penyimpanan Pesan di GitHub</h1>
+    
     <div class="form-group">
-      <label for="authToken">GitHub Token:</label>
-      <input type="password" id="authToken" placeholder="Enter your GitHub Personal Access Token" class="form-control">
+      <label for="authToken">Token GitHub:</label>
+      <input type="text" id="authToken" placeholder="Masukkan token GitHub Anda">
+      <div class="help-text">Buat token di Settings > Developer settings > Personal access tokens</div>
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="owner">Repository Owner:</label>
-        <input type="text" id="owner" value="xynatez" placeholder="GitHub username" class="form-control">
-      </div>
-      
-      <div class="form-group">
-        <label for="repo">Repository Name:</label>
-        <input type="text" id="repo" value="justatest" placeholder="Repository name" class="form-control">
-      </div>
-    </div>
+    
     <div class="form-group">
-      <label for="path">File Path:</label>
-      <input type="text" id="path" value="data.js" placeholder="e.g., data.js or folder/file.txt" class="form-control">
+      <label for="owner">Pemilik Repositori:</label>
+      <input type="text" id="owner" placeholder="Nama pengguna GitHub Anda">
     </div>
+    
     <div class="form-group">
-      <label for="userInput">Content:</label>
-      <textarea id="userInput" placeholder="Enter your content here..." class="form-control"></textarea>
+      <label for="repo">Nama Repositori:</label>
+      <input type="text" id="repo" placeholder="Nama repositori">
     </div>
+    
+    <div class="form-group">
+      <label for="path">Jalur File:</label>
+      <input type="text" id="path" placeholder="Contoh: messages.js" value="messages.js">
+      <div class="help-text">Disarankan mengakhiri nama file dengan .js untuk menyimpan sebagai array</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="userInput">Pesan Anda:</label>
+      <textarea id="userInput" placeholder="Tuliskan pesan Anda di sini..."></textarea>
+    </div>
+    
     <div class="button-group">
-      <button id="saveBtn" class="btn primary">Save to GitHub</button>
-      <button id="loadBtn" class="btn secondary">Load From GitHub</button>
+      <button id="saveBtn">Simpan Pesan</button>
+      <button id="loadBtn">Muat Pesan</button>
     </div>
+    
     <div id="status" class="status"></div>
   </div>
+  
   <script src="script.js"></script>
 </body>
 </html>
