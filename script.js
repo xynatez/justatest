@@ -8,7 +8,7 @@
   const path = 'data.js';
 
   // Inisialisasi Octokit
-  const octokit = new Octokit.Rest({ auth: authToken });
+  const octokit = new Octokit({ auth: authToken });  // 🟢 tanpa .Rest lagi
 
   document.getElementById('saveBtn').addEventListener('click', async () => {
     const content = document.getElementById('userInput').value.trim();
