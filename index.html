@@ -11,7 +11,6 @@
     <header>
       <h1>GitHub Repository Manager</h1>
     </header>
-
     <div class="info-box">
       <h2>How to use:</h2>
       <ol>
@@ -22,12 +21,10 @@
         <li>Click "Save to GitHub" to save your content</li>
       </ol>
     </div>
-
     <div class="form-group">
       <label for="authToken">GitHub Token:</label>
       <input type="password" id="authToken" placeholder="Enter your GitHub Personal Access Token" class="form-control">
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label for="owner">Repository Owner:</label>
@@ -39,25 +36,20 @@
         <input type="text" id="repo" value="justatest" placeholder="Repository name" class="form-control">
       </div>
     </div>
-
     <div class="form-group">
       <label for="path">File Path:</label>
       <input type="text" id="path" value="data.js" placeholder="e.g., data.js or folder/file.txt" class="form-control">
     </div>
-
     <div class="form-group">
       <label for="userInput">Content:</label>
       <textarea id="userInput" placeholder="Enter your content here..." class="form-control"></textarea>
     </div>
-
     <div class="button-group">
       <button id="saveBtn" class="btn primary">Save to GitHub</button>
       <button id="loadBtn" class="btn secondary">Load From GitHub</button>
     </div>
-
     <div id="status" class="status"></div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
